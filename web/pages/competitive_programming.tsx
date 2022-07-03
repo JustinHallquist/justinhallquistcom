@@ -1,12 +1,11 @@
-import Nav from "./components/nav"
+import Layout from './layouts/layout'
 
 export default function CompetitiveProgramming() {
   return (
-    <>
-      <Nav />
-      <h1 className="text-3xl font-bold underline">
+    <Layout content={
+      <h1 className="h-screen text-3xl font-bold underline">
         Competitive Programming
       </h1>
-    </>
+    } />
   )
 }
