@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const res = {}
 const max_depth = 50
-const exts = ['.py', '.in', '.txt']
+const exts = ['.py', '.cpp', '.in', '.txt']
 const root_dir = "./competitive_programming"
 
 let dir = root_dir
