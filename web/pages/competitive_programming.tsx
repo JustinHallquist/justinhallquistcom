@@ -3,8 +3,6 @@ import competitiveProgrammingResources from '../competitive_programming/resource
 
 const tabs = Object.keys(competitiveProgrammingResources.problems)
 
-console.log(tabs)
-
 export default function CompetitiveProgramming() {
   return (
     <Layout content={
@@ -12,8 +10,9 @@ export default function CompetitiveProgramming() {
         <div className="container px-6 py-8 mx-auto">
           <div className="lg:flex lg:-mx-2">
             <div className="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
-              <a href="#" className="block font-medium text-gray-500 dark:text-gray-300 hover:underline">usaco</a>
-              <a href="#" className="block font-medium text-gray-500 dark:text-gray-300 hover:underline">codeforces</a>
+              {tabs.map(tab =>
+                <a href="#" className="block font-medium text-gray-500 dark:text-gray-300 hover:underline">{tab}</a>
+              )}
             </div>
 
 
