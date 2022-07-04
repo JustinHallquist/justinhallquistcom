@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const res = {}
 const max_depth = 50
-const exts = ['.py', '.cpp', '.in', '.txt']
+const exts = ['.py', '.cpp', '.in', '.txt', '.out']
 const root_dir = "./competitive_programming"
 
 let dir = root_dir
@@ -35,4 +35,4 @@ const walk = (path, obj = {}) => {
 
 walk(dir, res)
 
-console.log(JSON.stringify(res, null, 4))
+fs.writeFileSync(`${root_dir}/resources.json`, JSON.stringify(res, null, 4))
