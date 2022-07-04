@@ -16,7 +16,7 @@ export default function TreeNav({ tree, activeNode, ignore, handleSetActivePath 
         const pathParts = curPath.split('.').filter(Boolean)
         const parentActive = pathParts.length && activeNode.startsWith(pathParts.slice(0, pathParts.length - 1).join('.'))
 
-        if (ignore.includes(node)) return // TODO pass path ignore
+        if (ignore.includes(node)) return
 
         if (nodes[node]) {
           if (depth === 0) {
