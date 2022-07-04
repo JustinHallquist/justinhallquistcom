@@ -26,7 +26,7 @@ export default function CompetitiveProgramming() {
       <section className="h-full bg-white dark:bg-gray-900">
         <div className="container px-6 py-8 mx-auto">
           <div className="lg:flex lg:-mx-2">
-            <TreeNav tree={sites} activeNode={activeSite} activeChild={activeProblem} handleSetActiveNode={handleSetSite} handleSetActiveChild={handleSetProblem} />
+            <TreeNav tree={sites} activeNode={activeSite} />
             <SectionTabs sections={sections} activeSection={activeSection} handleSetActiveSection={handleSetActiveSection} />
 
             <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
