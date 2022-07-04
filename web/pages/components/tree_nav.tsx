@@ -39,7 +39,7 @@ export default function TreeNav({ tree, activeNode, ignore, handleSetActivePath 
 
   build(tree, dom, activeNode)
 
-  return <div className="space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+  return <div className="mb-5 space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
     {dom}
   </div >
 }
