@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf competitive_programming && cp -R ../competitive_programming . && node ./util/dir_to_tree.js && next build",
     "start": "next start",
     "lint": "next lint"
   },

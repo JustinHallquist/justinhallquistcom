@@ -1,0 +1,71 @@
+"""
+ID: justin.59
+LANG: PYTHON3
+TASK: beads 
+"""
+import sys
+
+name = "beads"
+path = ""
+
+sys.stdin = open(path + name + ".in")
+# sys.stdout = open(path + name + ".out", "w")
+
+n = int(input())
+rb = list(input())
+b = rb + rb
+
+bm = {}
+tmp = {}
+
+pb = None
+ci = 0
+w = 0
+
+for idx, v in enumerate(b):
+    if v == "w":
+        w += 1
+        continue
+
+    if pb != v:
+        ci += 1
+        bm[ci] = 1 + w
+        tmp[ci] = v + ("w" * w)
+
+        if ci - 1 in bm:
+            bm[ci - 1] += w
+            tmp[ci - 1] += "w" * w
+
+        w = 0
+    else:
+        bm[ci] += 1 + w
+        tmp[ci] += v + ("w" * w)
+        w = 0
+
+    pb = v
+
+res = 0
+
+for idx, v in bm.items():
+    l = 0
+    r = 0
+    if idx + 1 in bm:
+        l = bm[idx] + bm[idx + 1]
+        if b[idx] == "w" or b[idx + 1] == "w":
+            l -= 1
+
+    if idx - 1 in bm:
+        r = bm[idx] + bm[idx - 1]
+        if b[idx] == "w" or b[idx - 1] == "w":
+            r -= 1
+
+    res = max(res, l, r)
+
+import pprint
+
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(tmp)
+# print(tmp)
+print(bm)
+
+print(res or len(rb))
