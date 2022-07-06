@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
 export default function TreeNav(
-  { tree, activeNode, ignore, handleSetActivePath }:
-    { tree: any, activeNode: string, ignore: Array<string>, handleSetActivePath: Function }
+  { className, tree, activeNode, ignore, handleSetActivePath }:
+    { className: string, tree: any, activeNode: string, ignore: Array<string>, handleSetActivePath: Function }
 ) {
   const dom: Array<Array<ReactNode>> = []
 
@@ -55,7 +55,7 @@ export default function TreeNav(
 
   build(tree, dom, activeNode)
 
-  return <div className="mb-5 space-y-3 lg:w-1/5 lg:px-2 lg:space-y-4">
+  return <div className={`${className} mb-5`}>
     {dom}
   </div >
 }
