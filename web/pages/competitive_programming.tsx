@@ -52,7 +52,7 @@ export default function CompetitiveProgramming() {
                 <div className="box row-end-auto row-span-11 gap-4 col-span-1 dark:text-white text-sm tracking-widest">
                   {body}
                 </div>
-                : ''
+                : ""
               }
             </div>
           </div>
