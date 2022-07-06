@@ -1,11 +1,9 @@
 const fs = require('fs')
+const args = require('./arg_parser')
 
 const res = {}
 const max_depth = 50
 const exts = ['.py', '.cpp', '.in', '.txt', '.out']
-const root_dir = "./competitive_programming"
-
-let dir = root_dir
 
 const walk = (path, obj = {}) => {
   const all = fs.readdirSync(path)
@@ -17,7 +15,9 @@ const walk = (path, obj = {}) => {
   }
 
   if (files.length) {
-    obj.files = files
+    files.forEach(file => {
+      obj[file] = `${path}/${file}`
+    })
   }
 
   if (dirs.length) {
@@ -26,13 +26,30 @@ const walk = (path, obj = {}) => {
       const next_path = `${path}/${dir}`
       const stats = fs.lstatSync(next_path)
 
-      if (stats && stats.isDirectory()) {
-        walk(next_path, obj[dir])
-      }
+      if (stats && stats.isDirectory()) walk(next_path, obj[dir])
     })
   }
+
+  return obj
 }
 
-walk(dir, res)
+const write = () => {
+  if (!args.in) {
+    throw new Error('Missing in path')
+  }
 
-fs.writeFileSync(`${root_dir}/resources.json`, JSON.stringify(res, null, 4))
+  if (!args.out) {
+    throw new Error('Missing out path')
+  }
+
+  const res = walk(args.in)
+
+  fs.writeFileSync(args.out, JSON.stringify(res, null, 4))
+}
+
+if (!module.parent) write()
+
+module.exports = {
+  walk,
+  write
+}
