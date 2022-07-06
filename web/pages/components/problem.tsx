@@ -36,16 +36,10 @@ export default function Problem({ input, output, children, dangerous }: { input:
     return ""
 
   }
-  if (dangerous) return <div className="grid gap-4 grid-cols-12">
+  return <div className="grid gap-4 grid-cols-12">
     <div className="gap-4 mt-4 col-span-8">
-      <div dangerouslySetInnerHTML={{ __html: children as string }}></div>
+      {dangerous ? <div dangerouslySetInnerHTML={{ __html: children as string }}></div> : <div>{children}</div>}
     </div>
     {buildInOut()}
   </div>
-
-  return <>
-    <div>{children}</div>
-    {input ? <pre>{input}</pre> : ''}
-    {buildInOut()}
-  </>
 }
