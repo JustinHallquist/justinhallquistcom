@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Layout from './layouts/layout'
 import TreeNav from './components/tree_nav';
 import SectionTabs from './components/section_tabs';
+import Solution from './components/solution';
+import Problem from './components/problem';
 import competitiveProgrammingResources from '../competitive_programming/resources.json'
 import competitiveProgrammingContent from '../competitive_programming/content.json'
 
@@ -23,7 +25,7 @@ interface Content {
   [index: string]: ProblemContent
 }
 
-const content: Content = competitiveProgrammingContent
+const content: Content = competitiveProgrammingContent as Content
 
 export default function CompetitiveProgramming() {
   const [activePath, setActivePath] = useState('');
@@ -34,9 +36,16 @@ export default function CompetitiveProgramming() {
   const handleSetActiveSection = (section: string) => setSection(section)
 
   const key: string = activePath ? `problems/${activePath.replaceAll('.', '/')}` : ''
-  const current_content = activePath ? content[key] : ''
+  const currentContentParts: ProblemContent = activePath && content[key] && content ? content[key] : {} as ProblemContent;
+  const availableSections: Array<string> = sections.filter((section: string) => currentContentParts[section as keyof ProblemContent]).filter(Boolean)
+  const currentContent: string = currentContentParts[activeSection as keyof ProblemContent]
 
-  if (content) {
+  let body = null
+
+  if (activeSection === 'solution') {
+    body = <Solution>{currentContent}</Solution>
+  } else if (activeSection === 'problem') {
+    body = <Problem dangerous={true}>{currentContent}</Problem>
   }
 
   return (
@@ -48,13 +57,13 @@ export default function CompetitiveProgramming() {
             <div className="grid">
               <div className="row-span-full">
                 <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
-                  <SectionTabs sections={sections} activeSection={activeSection} handleSetActiveSection={handleSetActiveSection} />
+                  <SectionTabs sections={availableSections} activeSection={activeSection} handleSetActiveSection={handleSetActiveSection} />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
                 <div className="dark:text-white text-sm tracking-widest">
-                  {current_content ? <pre>{current_content.solution}</pre> : ''}
+                  {body}
                 </div>
               </div>
             </div>

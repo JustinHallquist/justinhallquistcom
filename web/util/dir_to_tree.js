@@ -3,7 +3,7 @@ const args = require('./arg_parser')
 
 const res = {}
 const max_depth = 50
-const exts = ['.py', '.cpp', '.in', '.txt', '.out']
+const exts = ['.py', '.cpp', '.in', '.txt', '.out', '.md', '.html']
 
 const walk = (path, obj = {}) => {
   const all = fs.readdirSync(path)
