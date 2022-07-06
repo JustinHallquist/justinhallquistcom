@@ -38,7 +38,7 @@ export default function CompetitiveProgramming() {
 
   return (
     <Layout content={
-      <section className="h-full bg-white dark:bg-gray-900">
+      <section className="min-h-screen bg-white dark:bg-gray-900">
         <div className="container px-6 py-8 mx-auto">
           <div className="grid grid-cols-12 grid-rows-1 gap-4 grid-flow-row">
             <TreeNav className="box col-span-2 row-end-auto" tree={sites} activeNode={activePath} handleSetActivePath={handleSetActivePath} ignore={['files']} />
