@@ -27,7 +27,7 @@ export default function TreeNav(
     if (typeof nodes === 'object' && !Array.isArray(nodes)) {
       Object.keys(nodes).map(node => {
         const curPath = path.length ? `${path}.${node}` : node
-        const active = activeNode.startsWith(curPath)
+        const active = activeNode === curPath
 
         const pathParts = curPath.split('.').filter(Boolean)
         const parentActive = !!(pathParts.length && activeNode.startsWith(pathParts.slice(0, pathParts.length - 1).join('.')))

@@ -80,17 +80,17 @@ Object.entries(grouped_files).forEach(([path, files]) => {
     const ext = file.split('.').pop()
 
     if (problem_exts.includes(ext)) {
-      contentParts.problem += createProblemSnippet(file) + "<br/>"
+      contentParts.problem += createProblemSnippet(file)
     } else if (in_exts.includes(ext)) {
-      contentParts.problem_in += createProblemSnippet(file) + "<br/>"
+      contentParts.problem_in += createProblemSnippet(file)
     } else if (out_exts.includes(ext)) {
-      contentParts.problem_out += createProblemSnippet(file) + "<br/>"
+      contentParts.problem_out += createProblemSnippet(file)
     } else if (supplemental_exts.includes(ext)) {
-      contentParts.problem_supplement += createProblemSnippet(file) + "<br/>"
+      contentParts.problem_supplement += createProblemSnippet(file)
     } else if (lang_exts.includes(ext)) {
       contentParts.solution += createSolutionSnippet(file, ext)
     } else if (explanation_exts.includes(ext)) {
-      contentParts.explanation += createExplanationSnippet(file) + "<br/>"
+      contentParts.explanation += createExplanationSnippet(file)
     }
   })
 
