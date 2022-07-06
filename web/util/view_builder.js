@@ -42,8 +42,20 @@ const createProblemSnippet = path => {
   return fs.readFileSync(path)
 }
 
-const createSolutionSnippet = path => {
-  return fs.readFileSync(path)
+const createSolutionSnippet = (path, ext) => {
+  let str = ""
+  let comment_char = ""
+  if (ext === 'cpp' || ext === 'js') {
+    comment_char = "//"
+  } else if (ext === 'py') {
+    comment_char = "#"
+  }
+
+  str += comment_char + " " + ext + "\n"
+  str += fs.readFileSync(path)
+  str += "\n\n\n"
+
+  return str;
 }
 
 const createExplanationSnippet = path => {
@@ -76,7 +88,7 @@ Object.entries(grouped_files).forEach(([path, files]) => {
     } else if (supplemental_exts.includes(ext)) {
       contentParts.problem_supplement += createProblemSnippet(file) + "<br/>"
     } else if (lang_exts.includes(ext)) {
-      contentParts.solution += createSolutionSnippet(file) + "<br/>"
+      contentParts.solution += createSolutionSnippet(file, ext)
     } else if (explanation_exts.includes(ext)) {
       contentParts.explanation += createExplanationSnippet(file) + "<br/>"
     }
