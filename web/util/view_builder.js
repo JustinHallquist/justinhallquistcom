@@ -3,8 +3,6 @@ const dirToTree = require('./dir_to_tree')
 const args = require('./arg_parser')
 
 const lang_exts = ['js', 'cpp', 'py']
-const in_exts = ['in']
-const out_exts = ['out']
 const problem_exts = ['html', 'md']
 const supplemental_exts = ['txt']
 const explanation_exts = ['exp']
@@ -55,7 +53,7 @@ const createSolutionSnippet = (path, ext) => {
   str += fs.readFileSync(path)
   str += "\n\n\n"
 
-  return str;
+  return str.replace(/ID:\s.*\n/, "");
 }
 
 const createExplanationSnippet = path => {
@@ -67,8 +65,6 @@ const output = {}
 Object.entries(grouped_files).forEach(([path, files]) => {
   const contentParts = {
     problem: '',
-    problem_in: '',
-    problem_out: '',
     problem_supplement: '',
     solution: '',
     explanation: ''
@@ -81,12 +77,8 @@ Object.entries(grouped_files).forEach(([path, files]) => {
 
     if (problem_exts.includes(ext)) {
       contentParts.problem += createProblemSnippet(file)
-    } else if (in_exts.includes(ext)) {
-      contentParts.problem_in += createProblemSnippet(file)
-    } else if (out_exts.includes(ext)) {
-      contentParts.problem_out += createProblemSnippet(file)
     } else if (supplemental_exts.includes(ext)) {
-      contentParts.problem_supplement += createProblemSnippet(file)
+      // contentParts.problem_supplement += createProblemSnippet(file)
     } else if (lang_exts.includes(ext)) {
       contentParts.solution += createSolutionSnippet(file, ext)
     } else if (explanation_exts.includes(ext)) {

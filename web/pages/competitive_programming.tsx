@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ProblemContent, Content } from './interfaces/competitive_programming_interfaces'
+import { ProblemContent, Content } from '../interfaces/competitive_programming_interfaces'
 import Layout from './layouts/layout'
 import TreeNav from './components/tree_nav';
 import SectionTabs from './components/section_tabs';
@@ -31,9 +31,9 @@ export default function CompetitiveProgramming() {
   let body = null
 
   if (activeSection === 'solution') {
-    body = <Solution >{currentContent}</Solution>
+    body = <Solution content={currentContent}></Solution>
   } else if (activeSection === 'problem') {
-    body = <Problem input={currentContentParts.problem_in} output={currentContentParts.problem_out} dangerous={true}>{currentContent}</Problem>
+    body = <Problem dangerous={true}>{currentContent}</Problem>
   }
 
   return (
