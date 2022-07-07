@@ -53,7 +53,7 @@ const createSolutionSnippet = (path, ext) => {
   str += fs.readFileSync(path)
   str += "\n\n\n"
 
-  return str;
+  return str.replace(/ID:\s.*\n/, "");
 }
 
 const createExplanationSnippet = path => {
