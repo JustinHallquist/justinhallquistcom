@@ -1,3 +1,4 @@
+# https://www.codewars.com/kata/55847fcd3e7dadc9f800005f
 # return True if the two binary trees rooted and a and b are equal in value and structure
 # return False otherwise
 
